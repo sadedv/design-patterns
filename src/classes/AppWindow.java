@@ -68,7 +68,7 @@ public class AppWindow extends JFrame {
         JButton btnStartThread1 = new JButton("Start Thread");
         btnStartThread1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                counter1.start();
+                System.out.println(javax.swing.SwingUtilities.isEventDispatchThread());
             }
         });
         btnStartThread1.setBounds(10, 11, 130, 23);
@@ -77,7 +77,7 @@ public class AppWindow extends JFrame {
         JButton btnStopThread1 = new JButton("Stop Thread");
         btnStopThread1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                counter1.interrupt();
+                
             }
         });
         btnStopThread1.setBounds(150, 11, 130, 23);
