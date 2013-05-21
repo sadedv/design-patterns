@@ -1,5 +1,6 @@
 package other;
-public class SingletonPerson {
+
+public final class SingletonPerson {
 
     private static SingletonPerson singletonPerson = new SingletonPerson();
 

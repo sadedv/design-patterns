@@ -1,6 +1,6 @@
 package observer;
 
-public class Person implements Observer {
+public class Person implements Observer<String> {
 
     private String name;
 
@@ -9,8 +9,8 @@ public class Person implements Observer {
     }
     
     @Override
-    public void update(String status) {
-        System.out.println("I am " + name + " and weather is " + status);
+    public void update(String message) {
+        System.out.println("I am " + name + " and weather is " + message);
     }
 
 }

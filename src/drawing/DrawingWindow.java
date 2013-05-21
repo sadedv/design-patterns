@@ -1,6 +1,7 @@
 package drawing;
 
 import java.awt.Dimension;
+import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
@@ -26,6 +27,9 @@ public class DrawingWindow extends JFrame {
         // Add new panel
         add(new Canvas());
 
+        // Set title
+        setTitle("Drawing #" + Thread.currentThread().getId());
+
     }
 
     /**
@@ -35,7 +39,26 @@ public class DrawingWindow extends JFrame {
      */
     public static void main(String[] args) {
 
-        new DrawingWindow();
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new DrawingWindow();
+            }
+        });
+
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new DrawingWindow();
+            }
+        });
+
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new DrawingWindow();
+            }
+        });
 
     }
 

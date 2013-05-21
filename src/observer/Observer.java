@@ -1,7 +1,7 @@
 package observer;
 
-public interface Observer {
+public interface Observer<T> {
 
-    public void update(String status);
+    public void update(T message);
     
 }
