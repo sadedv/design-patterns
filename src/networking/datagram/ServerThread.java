@@ -36,6 +36,7 @@ public class ServerThread extends Thread {
 
                 buffer = "Hello Tomas!".getBytes();
 
+                // Send packet
                 InetAddress address = packet.getAddress();
                 int port = packet.getPort();
                 packet = new DatagramPacket(buffer, buffer.length, address,
@@ -44,7 +45,6 @@ public class ServerThread extends Thread {
 
             } catch (IOException e) {
                 e.printStackTrace();
-                socket.close();
             }
         }
     }
