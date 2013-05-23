@@ -5,9 +5,9 @@ import java.util.concurrent.TimeUnit;
 public class ThreadTest {
 
     public static void main(String[] args) {
-        
+
         Thread t = new Thread(new Runnable() {
-            
+
             @Override
             public void run() {
                 try {
@@ -16,9 +16,9 @@ public class ThreadTest {
                     e.printStackTrace();
                 }
             }
-            
+
         });
-        
+
         t.start();
 
         try {
@@ -26,9 +26,9 @@ public class ThreadTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        
+
         System.out.println("Message");
-        
+
     }
-    
+
 }

@@ -13,8 +13,9 @@ public class TaskWorker extends SwingWorker<String, String> {
     protected String doInBackground() throws Exception {
 
         TimeUnit.MILLISECONDS.sleep(1000);
-        
-        System.out.println("is event dispatch thread: " + javax.swing.SwingUtilities.isEventDispatchThread());
+
+        System.out.println("is event dispatch thread: "
+                + javax.swing.SwingUtilities.isEventDispatchThread());
 
         return "Tomas";
     }

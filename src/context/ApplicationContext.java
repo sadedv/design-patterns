@@ -19,7 +19,7 @@ public final class ApplicationContext {
      * Instance attribute
      */
     private String attribute = "no_attribute";
-    
+
     /**
      * ConnectionPool
      */
@@ -51,9 +51,10 @@ public final class ApplicationContext {
     public String getAttribute() {
         return attribute;
     }
-    
+
     /**
      * Returns a reference to connection pool object
+     * 
      * @return
      */
     public ConnectionPool getConnectionPool() {

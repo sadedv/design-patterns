@@ -14,9 +14,9 @@ public class Main {
         Future<String> a1 = exec.submit(new CallableTest());
         Future<String> a2 = exec.submit(new CallableTest());
         Future<String> a3 = exec.submit(new CallableTest());
-        
+
         exec.shutdown();
-        
+
         try {
             System.out.println(a1.get());
             System.out.println(a2.get());
@@ -26,7 +26,7 @@ public class Main {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        
+
     }
 
 }

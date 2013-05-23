@@ -67,9 +67,12 @@ public class TestWindow extends JFrame {
 
                         for (int i = 0; i < 5; i++) {
 
-                            System.out.println("working... is event dispatch thread? " + javax.swing.SwingUtilities.isEventDispatchThread());
+                            System.out
+                                    .println("working... is event dispatch thread? "
+                                            + javax.swing.SwingUtilities
+                                                    .isEventDispatchThread());
                             TimeUnit.MILLISECONDS.sleep(500);
-                            
+
                         }
 
                         return null;

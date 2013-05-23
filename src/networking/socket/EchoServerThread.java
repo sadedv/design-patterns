@@ -23,12 +23,11 @@ public class EchoServerThread implements Runnable {
 
         PrintWriter out = null;
         BufferedReader in = null;
-        
+
         try {
 
-            out = new PrintWriter(clientSocket.getOutputStream(),
-                    true);
-            
+            out = new PrintWriter(clientSocket.getOutputStream(), true);
+
             in = new BufferedReader(new InputStreamReader(
                     clientSocket.getInputStream()));
 
@@ -52,22 +51,22 @@ public class EchoServerThread implements Runnable {
             }
 
         } catch (IOException e) {
-            
+
             e.printStackTrace();
-            
+
         } finally {
-            
+
             out.close();
-            
+
             try {
-            
+
                 in.close();
                 clientSocket.close();
-                
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            
+
         }
 
     }

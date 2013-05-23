@@ -54,7 +54,7 @@ public class EchoClient {
         // Read from and write to socket
         while ((fromServer = in.readLine()) != null) {
 
-            // Print out the string from socket 
+            // Print out the string from socket
             System.out.println("Server: " + fromServer);
 
             // Read user input
@@ -62,7 +62,7 @@ public class EchoClient {
             if (fromClient != null) {
                 out.println(fromClient);
             }
-            
+
             // Break the loop if user input equals 'exit'
             if (fromClient.equals("exit")) {
                 break;

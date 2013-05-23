@@ -41,7 +41,7 @@ public class ChatServer {
         // Create separated thread for listening
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(new SocketListener(in, "server"));
-        
+
         // Reader for standard input (user input)
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(
                 System.in));
@@ -56,11 +56,11 @@ public class ChatServer {
             if (fromServer != null) {
                 out.println(fromServer);
             }
-            
+
             if (fromServer.equals("break")) {
                 break;
             }
-            
+
         }
 
         out.close();

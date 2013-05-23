@@ -50,7 +50,7 @@ public class Client {
         ExecutorService exec = Executors.newCachedThreadPool();
 
         Future<String> future = exec.submit(new CallableTask());
-        
+
         try {
             System.out.println(future.get());
         } catch (InterruptedException e) {
@@ -58,7 +58,7 @@ public class Client {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        
+
         exec.shutdown();
 
     }

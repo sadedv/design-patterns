@@ -26,7 +26,8 @@ public final class ConnectionPool extends ApplicationClass {
         for (Map.Entry<Connection, Boolean> entry : connections.entrySet()) {
             if (!entry.getValue()) {
                 entry.setValue(true);
-                System.out.println("Connection was provided. " + entry.getKey());
+                System.out
+                        .println("Connection was provided. " + entry.getKey());
                 return entry.getKey();
             }
         }
@@ -37,29 +38,29 @@ public final class ConnectionPool extends ApplicationClass {
             System.out.println("Connection was provided. " + c);
             return c;
         }
-        
+
         System.out.println("Connection limit exceeded.");
-        
+
         return null;
     }
-    
+
     public void freeConnection(Connection connection) {
         connections.put(connection, false);
     }
-    
+
     public static void main(String[] args) {
-        
-        ConnectionPool pool = ConnectionPool.getInstance();
-        
-        Connection c1 = pool.requestConnection();
-        Connection c2 = pool.requestConnection();
-        Connection c3 = pool.requestConnection();
-        Connection c4 = pool.requestConnection();
-        Connection c5 = pool.requestConnection();
-        Connection c6 = pool.requestConnection();
-        pool.freeConnection(c1);
-        c6 = pool.requestConnection();
-        
+
+        // ConnectionPool pool = ConnectionPool.getInstance();
+        //
+        // Connection c1 = pool.requestConnection();
+        // Connection c2 = pool.requestConnection();
+        // Connection c3 = pool.requestConnection();
+        // Connection c4 = pool.requestConnection();
+        // Connection c5 = pool.requestConnection();
+        // Connection c6 = pool.requestConnection();
+        // pool.freeConnection(c1);
+        // c6 = pool.requestConnection();
+
     }
 
 }

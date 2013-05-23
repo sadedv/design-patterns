@@ -11,7 +11,7 @@ package observer;
 public class AppWindow extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1L;
-    
+
     Weather weather = new Weather();
 
     /**

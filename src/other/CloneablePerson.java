@@ -1,4 +1,5 @@
 package other;
+
 public class CloneablePerson implements Cloneable {
 
     private String firstName;

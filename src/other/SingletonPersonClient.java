@@ -1,4 +1,5 @@
 package other;
+
 public final class SingletonPersonClient {
 
     public static void main(String[] args) {

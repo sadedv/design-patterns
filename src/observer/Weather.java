@@ -6,7 +6,7 @@ import java.util.List;
 public class Weather implements Observable<String> {
 
     private List<Observer<String>> observers = new ArrayList<Observer<String>>();
-    
+
     public void setStatus(String message) {
         notifyObservers(message);
     }

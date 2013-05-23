@@ -45,7 +45,7 @@ public class ChatClient {
                     + "the connection to: localhost!");
             System.exit(1);
         }
-        
+
         // Create separated thread for listening
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(new SocketListener(in, "client"));
@@ -65,7 +65,7 @@ public class ChatClient {
             if (fromClient != null) {
                 out.println(fromClient);
             }
-            
+
             if (fromClient.equals("break")) {
                 break;
             }
