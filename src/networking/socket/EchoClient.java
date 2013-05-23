@@ -1,4 +1,4 @@
-package networking;
+package networking.socket;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,8 +6,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class EchoClient {
 
@@ -27,7 +25,7 @@ public class EchoClient {
 
         try {
 
-            // Create new socket
+            // Create new socket (Server should accept the connection)
             echoSocket = new Socket(host, 7);
 
             // Get output stream from socket
@@ -53,22 +51,21 @@ public class EchoClient {
         String fromServer;
         String fromClient;
 
-        // Read user input and send it to the server
+        // Read from and write to socket
         while ((fromServer = in.readLine()) != null) {
 
-            // Read string from server
+            // Print out the string from socket 
             System.out.println("Server: " + fromServer);
-
-            // If server's response is 'bye' then break
-            if (fromServer.equals("bye")) {
-                break;
-            }
 
             // Read user input
             fromClient = stdIn.readLine();
-
             if (fromClient != null) {
                 out.println(fromClient);
+            }
+            
+            // Break the loop if user input equals 'exit'
+            if (fromClient.equals("exit")) {
+                break;
             }
 
         }
