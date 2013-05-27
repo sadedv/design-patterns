@@ -9,7 +9,7 @@ public class ChatClient {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new ChatWindow();
+                new MainWindow();
             }
         });
 

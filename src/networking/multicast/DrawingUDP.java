@@ -1,5 +1,6 @@
 package networking.multicast;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
@@ -8,14 +9,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
-import javax.swing.JTextArea;
+import javax.swing.JPanel;
 
-public class Chat {
-
+public class DrawingUDP {
     private static int port;
     private static String host;
-    
-    private String name;
 
     private MulticastSocket socket;
     private InetAddress group;
@@ -28,11 +26,9 @@ public class Chat {
         return host;
     }
 
-    public Chat(JTextArea messages, int port, String host, String name) {
-        Chat.port = port;
-        Chat.host = host;
-        
-        this.name = name;
+    public DrawingUDP(JPanel canvas, int port, String host) {
+        DrawingUDP.port = port;
+        DrawingUDP.host = host;
 
         try {
             socket = new MulticastSocket(port);
@@ -51,7 +47,7 @@ public class Chat {
                         return t;
                     }
                 });
-        exec.execute(new ChatListener(messages));
+        exec.execute(new DrawListener(canvas));
         exec.shutdown();
     }
 
@@ -63,12 +59,13 @@ public class Chat {
         }
     }
 
-    public void send(String message) {
+    public void send(MouseEvent event) {
 
-        message  = name + " > " + message;  
+        String coords = event.getX() + ";" + event.getY();
+
+        DatagramPacket packet = new DatagramPacket(coords.getBytes(),
+                coords.length(), group, port);
         
-        DatagramPacket packet = new DatagramPacket(message.getBytes(),
-                message.length(), group, port);
         try {
             socket.send(packet);
         } catch (IOException e) {
@@ -79,20 +76,21 @@ public class Chat {
 
 }
 
-class ChatListener implements Runnable {
+class DrawListener implements Runnable {
 
-    private JTextArea label;
+    private JPanel canvas;
 
-    public ChatListener(JTextArea messages) {
-        this.label = messages;
+    public DrawListener(JPanel canvas) {
+        this.canvas = canvas;
     }
 
     @Override
     public void run() {
         try {
-            MulticastSocket socket = new MulticastSocket(Chat.getPort());
-            InetAddress group = InetAddress.getByName(Chat.getHost());
+            MulticastSocket socket = new MulticastSocket(DrawingUDP.getPort());
+            InetAddress group = InetAddress.getByName(DrawingUDP.getHost());
             socket.joinGroup(group);
+            
             while (true) {
                 byte[] buffer = new byte[256];
                 DatagramPacket packet = new DatagramPacket(buffer,
@@ -100,8 +98,12 @@ class ChatListener implements Runnable {
                 socket.receive(packet);
                 String received = new String(packet.getData(), 0,
                         packet.getLength());
-                String text = label.getText() + "\n" + received;
-                label.setText(text);
+
+                String[] arr = received.split(";");
+                int x = Integer.parseInt(arr[0]);
+                int y = Integer.parseInt(arr[1]);
+                canvas.getGraphics().fillArc(x, y, 5, 5, 0, 360);
+
             }
         } catch (IOException e) {
             e.printStackTrace();
